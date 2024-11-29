@@ -3,62 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D com AR</title>
+  <title>Modelo 3D Ajustado</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    /* Remover margens e ajustar tamanho total */
-    body, html {
+    /* Estilos básicos */
+    body {
       margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: none; /* Sem fundo */
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
     }
 
-    /* Ajustar model-viewer para ocupar toda a tela */
+    h1 {
+      margin: 10px 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+
     model-viewer {
-      width: 100vw; /* Largura total */
-      height: 100vh; /* Altura total */
-      background-color: unset; /* Fundo transparente */
+      width: 100vw;
+      height: 90vh; /* Altura padrão para desktops */
+      display: block;
+      background: #fff;
+      border: none;
+      margin: 0 auto;
     }
 
-    /* Botão de AR com estilo inicial */
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+      model-viewer {
+        height: 75vh; /* Reduz a altura em telas menores */
+      }
+
+      h1 {
+        margin: 5px 10px; /* Reduz margem superior */
+        font-size: 16px; /* Tamanho menor do texto */
+      }
+    }
+
+    /* Botão de AR */
     #ar-button {
       position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
+      padding: 10px 20px;
       background-color: #007BFF;
       color: white;
       border: none;
       border-radius: 5px;
-      padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
-      z-index: 10;
     }
 
-    /* Hover do botão */
     #ar-button:hover {
       background-color: #0056b3;
+    }
+
+    /* Barra de progresso */
+    .progress-bar {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 3px;
+      background-color: #ddd;
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .progress-bar div {
+      width: 0%;
+      height: 100%;
+      background-color: #007BFF;
+      animation: loading 2s linear forwards;
+    }
+
+    @keyframes loading {
+      0% {
+        width: 0%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    /* Estilos da interação (ícone de mão) */
+    model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
+      width: 75px;
+      height: 75px;
+      animation-delay: 0.5s;
     }
   </style>
 </head>
 <body>
+  <h1>Texto descritivo do modelo 3D</h1>
   <model-viewer 
-    camera-controls 
-    touch-action="pan-y" 
     src="quadro.glb" 
     ar 
-    alt="Modelo 3D com AR"
+    camera-controls 
+    touch-action="pan-y" 
+    alt="Modelo 3D Ajustado"
     shadow-intensity="0.4"
+    shadow-softness="0.35"
+    tone-mapping="aces"
+    environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
     auto-rotate 
+    auto-rotate-speed="1" 
     interaction-prompt="auto"
-    interaction-prompt-threshold="500">
-      
-    <!-- Botão de AR com texto inicial -->
+    interaction-prompt-threshold="500"
+    exposure="1"
+    on-load="document.querySelector('.progress-bar').style.opacity = '0';">
+    
+    <!-- Botão para AR -->
     <button id="ar-button" slot="ar-button">Veja no mundo real</button>
+
+    <!-- Barra de progresso -->
+    <div class="progress-bar" slot="progress-bar">
+      <div></div>
+    </div>
   </model-viewer>
 </body>
 </html>
