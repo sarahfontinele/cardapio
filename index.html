@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D Interativo</title>
+  <title>Modelo 3D Ajustado</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    /* Ajustes do estilo */
+    /* Estilos básicos */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -14,14 +14,15 @@
     }
 
     model-viewer {
-      width: 100vw; /* Ocupar toda a largura */
-      height: 90vh; /* Ocupar 90% da altura da janela */
+      width: 100vw;
+      height: 90vh;
       display: block;
       background: #fff;
       border: none;
       margin: 0 auto;
     }
 
+    /* Botão de AR */
     #ar-button {
       position: absolute;
       bottom: 20px;
@@ -40,16 +41,19 @@
       background-color: #0056b3;
     }
 
+    /* Barra de progresso */
     .progress-bar {
       position: absolute;
-      bottom: 60px;
+      bottom: 80px; /* Movido para não sobrepor o botão */
       left: 50%;
       transform: translateX(-50%);
-      width: 80%;
-      height: 5px;
+      width: 60%; /* Diminuído de 80% para 60% */
+      height: 3px; /* Reduzido de 5px para 3px */
       background-color: #ddd;
-      border-radius: 2.5px;
+      border-radius: 2px;
       overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.5s ease-out; /* Efeito de desaparecimento */
     }
 
     .progress-bar div {
@@ -67,15 +71,22 @@
         width: 100%;
       }
     }
+
+    /* Estilos da interação (ícone de mão) */
+    model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
+      width: 50px; /* Aumentado de 35px para 50px */
+      height: 50px;
+      animation-delay: 1s; /* Reduzido o atraso para 1 segundo */
+    }
   </style>
 </head>
 <body>
   <model-viewer 
-    src="quadro.glb" 
+    src="modelo.glb" 
     ar 
     camera-controls 
     touch-action="pan-y" 
-    alt="Modelo 3D Interativo"
+    alt="Modelo 3D com Ajustes"
     shadow-intensity="0.4"
     shadow-softness="0.35"
     tone-mapping="aces"
@@ -83,9 +94,11 @@
     auto-rotate 
     auto-rotate-speed="1" 
     interaction-prompt="auto"
-    interaction-prompt-threshold="3000"
+    interaction-prompt-threshold="1000" <!-- Reduzido para 1 segundo -->
     exposure="1"
-    ar-status="not-presenting">
+    ar-status="not-presenting"
+    on-load="document.querySelector('.progress-bar').style.opacity = '0';">
+    
     <!-- Botão para AR -->
     <button id="ar-button" slot="ar-button">Veja no mundo real</button>
 
