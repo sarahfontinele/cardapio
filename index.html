@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizador USDZ</title>
+  <title>Visualizador de Arquivo 3D</title>
 </head>
 <body>
   <h1>Visualizador de Arquivo 3D</h1>
-  <a href="https://raw.githubusercontent.com/sarahfontinele/VisualizadorUSDZ/main/quadro.usdz" rel="ar">
-    Clique aqui para ver o modelo em AR
-  </a>
+  
+  <!-- Usando a tag model-viewer para exibir o arquivo USDZ diretamente -->
+  <model-viewer src="https://raw.githubusercontent.com/sarahfontinele/VisualizadorUSDZ/main/quadro.usdz" alt="Modelo 3D" auto-rotate camera-controls ar>
+  </model-viewer>
+
+  <p>Se o modelo não carregar, você pode clicar <a href="https://raw.githubusercontent.com/sarahfontinele/VisualizadorUSDZ/main/quadro.usdz">aqui</a> para abrir o arquivo em AR.</p>
 </body>
 </html>
