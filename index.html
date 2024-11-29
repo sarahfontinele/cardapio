@@ -74,9 +74,9 @@
 
     /* Estilos da interação (ícone de mão) */
     model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
-      width: 50px; /* Aumentado de 35px para 50px */
-      height: 50px;
-      animation-delay: 1s; /* Reduzido o atraso para 1 segundo */
+      width: 75px; /* Aumentado de 50px para 75px */
+      height: 75px;
+      animation-delay: 0.5s; /* Reduzido ainda mais o atraso */
     }
   </style>
 </head>
@@ -94,9 +94,8 @@
     auto-rotate 
     auto-rotate-speed="1" 
     interaction-prompt="auto"
-    interaction-prompt-threshold="1000" <!-- Reduzido para 1 segundo -->
+    interaction-prompt-threshold="500"
     exposure="1"
-    ar-status="not-presenting"
     on-load="document.querySelector('.progress-bar').style.opacity = '0';">
     
     <!-- Botão para AR -->
