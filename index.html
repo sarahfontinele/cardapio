@@ -3,127 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D Ajustado</title>
+  <title>Modelo 3D com AR Minimalista</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    /* Estilos básicos */
+    /* Estilo para o corpo */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background: linear-gradient(#ffffff, #ada996); /* Gradiente de fundo */
+      overflow-x: hidden;
     }
 
-    h1 {
-      margin: 10px 20px;
-      font-size: 18px;
-      text-align: center;
+    /* Estilo para o container */
+    .demo {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
+    /* Estilo para o model-viewer */
     model-viewer {
-      width: 100vw;
-      height: 90vh; /* Altura padrão para desktops */
-      display: block;
-      background: #fff;
-      border: none;
-      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      background-color: unset; /* Fundo transparente */
     }
 
-    /* Estilos responsivos */
-    @media (max-width: 768px) {
-      model-viewer {
-        height: 75vh; /* Reduz a altura em telas menores */
-      }
-
-      h1 {
-        margin: 5px 10px; /* Reduz margem superior */
-        font-size: 16px; /* Tamanho menor do texto */
-      }
+    /* Ícone de dedo para interação */
+    model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
+      width: 75px; /* Tamanho maior */
+      height: 75px;
+      animation-delay: 0.5s; /* Aparece mais rápido */
     }
 
-    /* Botão de AR */
+    /* Botão de AR com ícone minimalista */
     #ar-button {
       position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
+      background: none;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
       cursor: pointer;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
     }
 
-    #ar-button:hover {
-      background-color: #0056b3;
-    }
-
-    /* Barra de progresso */
-    .progress-bar {
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 3px;
-      background-color: #ddd;
-      border-radius: 2px;
-      overflow: hidden;
-      opacity: 1;
-      transition: opacity 0.5s ease-out;
-    }
-
-    .progress-bar div {
-      width: 0%;
+    /* Estilo do ícone no botão */
+    #ar-button::before {
+      content: '';
+      display: block;
+      width: 100%;
       height: 100%;
-      background-color: #007BFF;
-      animation: loading 2s linear forwards;
+      background: url('https://modelviewer.dev/shared-assets/icons/ar-icon.svg') no-repeat center center;
+      background-size: contain;
     }
 
-    @keyframes loading {
-      0% {
-        width: 0%;
-      }
-      100% {
-        width: 100%;
-      }
-    }
-
-    /* Estilos da interação (ícone de mão) */
-    model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
-      width: 75px;
-      height: 75px;
-      animation-delay: 0.5s;
+    /* Ajuste para hover (opcional) */
+    #ar-button:hover::before {
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <h1>Texto descritivo do modelo 3D</h1>
-  <model-viewer 
-    src="quadro.glb" 
-    ar 
-    camera-controls 
-    touch-action="pan-y" 
-    alt="Modelo 3D Ajustado"
-    shadow-intensity="0.4"
-    shadow-softness="0.35"
-    tone-mapping="aces"
-    environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
-    auto-rotate 
-    auto-rotate-speed="1" 
-    interaction-prompt="auto"
-    interaction-prompt-threshold="500"
-    exposure="1"
-    on-load="document.querySelector('.progress-bar').style.opacity = '0';">
-    
-    <!-- Botão para AR -->
-    <button id="ar-button" slot="ar-button">Veja no mundo real</button>
-
-    <!-- Barra de progresso -->
-    <div class="progress-bar" slot="progress-bar">
-      <div></div>
-    </div>
-  </model-viewer>
+  <div class="demo">
+    <!-- Modelo 3D -->
+    <model-viewer 
+      camera-controls 
+      touch-action="pan-y" 
+      src="quadro.glb" 
+      ar 
+      alt="Modelo 3D com AR Minimalista"
+      shadow-intensity="0.4"
+      auto-rotate 
+      interaction-prompt="auto"
+      interaction-prompt-threshold="500">
+      
+      <!-- Botão de AR com ícone minimalista -->
+      <button id="ar-button" slot="ar-button"></button>
+    </model-viewer>
+  </div>
 </body>
 </html>
