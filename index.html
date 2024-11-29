@@ -3,23 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizador de Modelo 3D</title>
+  <title>Modelo 3D Interativo</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <style>
+    /* Estilos para ocupar mais espaço da tela e melhorar o layout */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    model-viewer {
+      width: 100vw; /* Ocupar toda a largura */
+      height: 90vh; /* Ocupar 90% da altura da janela */
+      display: block;
+      background: #fff;
+      border: none;
+      margin: 0 auto;
+    }
+
+    #ar-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #ar-button:hover {
+      background-color: #0056b3;
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 5px;
+      background-color: #ddd;
+      border-radius: 2.5px;
+      overflow: hidden;
+    }
+
+    .progress-bar div {
+      width: 0%;
+      height: 100%;
+      background-color: #007BFF;
+      animation: loading 2s linear forwards;
+    }
+
+    @keyframes loading {
+      0% {
+        width: 0%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .hotspot {
+      background: #ff4081;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <h1>Modelo 3D</h1>
   <model-viewer 
-    src="quadro.glb" 
+    src="modelo.glb" 
     ar 
     camera-controls 
     touch-action="pan-y" 
-    alt="Modelo 3D"
+    alt="Modelo 3D Interativo"
     shadow-intensity="0.4"
     shadow-softness="0.35"
     tone-mapping="aces"
     environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
     auto-rotate 
-    exposure="1">
+    exposure="1"
+    ar-status="not-presenting">
+    <!-- Botão para AR -->
+    <button id="ar-button" slot="ar-button">Veja no mundo real</button>
+
+    <!-- Hotspots -->
+    <button class="hotspot" slot="hotspot-1" data-position="0m 1m 0m" data-normal="0 0 0"></button>
+    <button class="hotspot" slot="hotspot-2" data-position="1m 1m 0m" data-normal="0 0 0"></button>
+
+    <!-- Barra de progresso -->
+    <div class="progress-bar" slot="progress-bar">
+      <div></div>
+    </div>
   </model-viewer>
 </body>
 </html>
