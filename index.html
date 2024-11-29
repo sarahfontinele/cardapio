@@ -13,13 +13,31 @@
       background-color: #f4f4f4;
     }
 
+    h1 {
+      margin: 10px 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+
     model-viewer {
       width: 100vw;
-      height: 90vh;
+      height: 90vh; /* Altura padrão para desktops */
       display: block;
       background: #fff;
       border: none;
       margin: 0 auto;
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+      model-viewer {
+        height: 75vh; /* Reduz a altura em telas menores */
+      }
+
+      h1 {
+        margin: 5px 10px; /* Reduz margem superior */
+        font-size: 16px; /* Tamanho menor do texto */
+      }
     }
 
     /* Botão de AR */
@@ -44,16 +62,16 @@
     /* Barra de progresso */
     .progress-bar {
       position: absolute;
-      bottom: 80px; /* Movido para não sobrepor o botão */
+      bottom: 80px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60%; /* Diminuído de 80% para 60% */
-      height: 3px; /* Reduzido de 5px para 3px */
+      width: 60%;
+      height: 3px;
       background-color: #ddd;
       border-radius: 2px;
       overflow: hidden;
       opacity: 1;
-      transition: opacity 0.5s ease-out; /* Efeito de desaparecimento */
+      transition: opacity 0.5s ease-out;
     }
 
     .progress-bar div {
@@ -74,19 +92,20 @@
 
     /* Estilos da interação (ícone de mão) */
     model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
-      width: 75px; /* Aumentado de 50px para 75px */
+      width: 75px;
       height: 75px;
-      animation-delay: 0.5s; /* Reduzido ainda mais o atraso */
+      animation-delay: 0.5s;
     }
   </style>
 </head>
 <body>
+  <h1>Texto descritivo do modelo 3D</h1>
   <model-viewer 
     src="quadro.glb" 
     ar 
     camera-controls 
     touch-action="pan-y" 
-    alt="Modelo 3D com Ajustes"
+    alt="Modelo 3D Ajustado"
     shadow-intensity="0.4"
     shadow-softness="0.35"
     tone-mapping="aces"
