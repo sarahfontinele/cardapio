@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D Ajustado</title>
+  <title>Modelo 3D com AR Ajustado</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
     /* Estilos básicos */
@@ -37,6 +37,7 @@
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
     }
 
     #ar-button:hover {
@@ -65,11 +66,11 @@
     auto-rotate 
     auto-rotate-speed="1" 
     interaction-prompt="auto"
-    interaction-prompt-threshold="500">
+    interaction-prompt-threshold="500"
+    scale="0.4 0.4 0.4"> <!-- Reduzido para 40% do tamanho original -->
     
     <!-- Botão de AR -->
     <button id="ar-button" slot="ar-button">Veja no mundo real</button>
   </model-viewer>
 </body>
 </html>
-
