@@ -3,43 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D com AR Minimalista</title>
+  <title>Modelo 3D Limpo</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    /* Estilo para o corpo */
-    body {
+    /* Remover margens e ajustar tamanho total */
+    body, html {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(#ffffff, #ada996); /* Gradiente de fundo */
-      overflow-x: hidden;
-    }
-
-    /* Estilo para o container */
-    .demo {
-      position: relative;
-      width: 100%;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* Estilo para o model-viewer */
-    model-viewer {
+      padding: 0;
       width: 100%;
       height: 100%;
+      overflow: hidden;
+      background: none; /* Sem fundo */
+    }
+
+    /* Ajustar model-viewer para ocupar toda a tela */
+    model-viewer {
+      width: 100vw; /* Largura total */
+      height: 100vh; /* Altura total */
       background-color: unset; /* Fundo transparente */
     }
 
-    /* Ícone de dedo para interação */
-    model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
-      width: 75px; /* Tamanho maior */
-      height: 75px;
-      animation-delay: 0.5s; /* Aparece mais rápido */
-    }
-
-    /* Botão de AR com ícone minimalista */
+    /* Botão de AR minimalista */
     #ar-button {
       position: absolute;
       bottom: 20px;
@@ -48,12 +32,11 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 10px;
       width: 50px;
       height: 50px;
     }
 
-    /* Estilo do ícone no botão */
+    /* Ícone do botão de AR */
     #ar-button::before {
       content: '';
       display: block;
@@ -62,30 +45,22 @@
       background: url('https://modelviewer.dev/shared-assets/icons/ar-icon.svg') no-repeat center center;
       background-size: contain;
     }
-
-    /* Ajuste para hover (opcional) */
-    #ar-button:hover::before {
-      opacity: 0.8;
-    }
   </style>
 </head>
 <body>
-  <div class="demo">
-    <!-- Modelo 3D -->
-    <model-viewer 
-      camera-controls 
-      touch-action="pan-y" 
-      src="quadro.glb" 
-      ar 
-      alt="Modelo 3D com AR Minimalista"
-      shadow-intensity="0.4"
-      auto-rotate 
-      interaction-prompt="auto"
-      interaction-prompt-threshold="500">
+  <model-viewer 
+    camera-controls 
+    touch-action="pan-y" 
+    src="quadro.glb" 
+    ar 
+    alt="Modelo 3D Limpo"
+    shadow-intensity="0.4"
+    auto-rotate 
+    interaction-prompt="auto"
+    interaction-prompt-threshold="500">
       
-      <!-- Botão de AR com ícone minimalista -->
-      <button id="ar-button" slot="ar-button"></button>
-    </model-viewer>
-  </div>
+    <!-- Botão de AR -->
+    <button id="ar-button" slot="ar-button"></button>
+  </model-viewer>
 </body>
 </html>
