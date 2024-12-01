@@ -56,8 +56,6 @@
   <model-viewer 
     src="quadro.glb" 
     ar 
-    ar-placement="wall" <!-- Garante rastreamento correto para paredes -->
-    ar-scale="fixed" <!-- Mantém o tamanho no AR consistente -->
     camera-controls 
     touch-action="pan-y" 
     alt="Modelo 3D Ajustado"
@@ -69,7 +67,7 @@
     auto-rotate-speed="1" 
     interaction-prompt="auto"
     interaction-prompt-threshold="500"
-    scale="0.4 0.4 0.4">
+    scale="0.4 0.4 0.4"> <!-- Reduzido para 40% do tamanho original -->
     
     <!-- Botão de AR -->
     <button id="ar-button" slot="ar-button">Veja no mundo real</button>
