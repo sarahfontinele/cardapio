@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizador 3D com Módulos</title>
+  <title>Visualizador 3D Simples</title>
+  <!-- Three.js global -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r155/three.min.js"></script>
+  <!-- GLTFLoader global -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r155/examples/js/loaders/GLTFLoader.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -40,6 +44,6 @@
 <body>
   <canvas id="viewer"></canvas>
   <button id="upload-button">Upload Image</button>
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
