@@ -11,10 +11,12 @@ scene.add(light);
 // Carregar o modelo GLTF
 const loader = new THREE.GLTFLoader();
 let model;
-loader.load('quadro2.glb', (gltf) => {
+loader.load('modelo.glb', (gltf) => {
   model = gltf.scene;
   scene.add(model);
   camera.position.z = 2;
+}, undefined, (error) => {
+  console.error('Erro ao carregar o modelo:', error);
 });
 
 // Função de renderização
@@ -41,6 +43,8 @@ document.getElementById('upload-button').addEventListener('click', () => {
             node.material.needsUpdate = true;
           }
         });
+      } else {
+        console.error('O modelo ainda não foi carregado.');
       }
     };
     reader.readAsDataURL(file);
