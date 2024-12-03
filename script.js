@@ -11,7 +11,7 @@ scene.add(light);
 // Carregar o modelo GLTF
 const loader = new THREE.GLTFLoader();
 let model;
-loader.load('modelo.glb', (gltf) => {
+loader.load('quadro2.glb', (gltf) => {
   model = gltf.scene;
   scene.add(model);
   camera.position.z = 2;
