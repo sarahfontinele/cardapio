@@ -1,3 +1,6 @@
+import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.155.0/examples/jsm/loaders/GLTFLoader.js';
+
 // Configuração inicial do Three.js
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -9,7 +12,7 @@ const light = new THREE.AmbientLight(0xffffff, 1);
 scene.add(light);
 
 // Carregar o modelo GLTF
-const loader = new THREE.GLTFLoader();
+const loader = new GLTFLoader();
 let model;
 loader.load('modelo.glb', (gltf) => {
   model = gltf.scene;
