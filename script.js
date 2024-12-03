@@ -38,16 +38,4 @@ document.getElementById('upload-button').addEventListener('click', () => {
       const texture = new THREE.TextureLoader().load(e.target.result);
       if (model) {
         model.traverse((node) => {
-          if (node.isMesh && node.material.name === 'LogoMaterial') {
-            node.material.map = texture;
-            node.material.needsUpdate = true;
-          }
-        });
-      } else {
-        console.error('O modelo ainda não foi carregado.');
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-  input.click();
-});
+          if (node.isMesh && node.material
