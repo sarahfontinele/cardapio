@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizador 3D</title>
-  <!-- Carregar Three.js e GLTFLoader -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r155/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r155/examples/js/loaders/GLTFLoader.min.js"></script>
+  <title>Visualizador 3D Simples</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -19,14 +17,13 @@
       background: #f4f4f4;
     }
 
-    canvas {
-      width: 80vw;
-      height: 60vh;
-      border: 1px solid #ccc;
+    model-viewer {
+      width: 100%;
+      height: 80%;
     }
 
     #upload-button {
-      margin-top: 20px;
+      margin-top: 10px;
       padding: 10px 20px;
       background-color: #4285f4;
       color: white;
@@ -41,7 +38,7 @@
   </style>
 </head>
 <body>
-  <canvas id="viewer"></canvas>
+  <model-viewer id="viewer" src="modelo.glb" alt="Modelo 3D" camera-controls auto-rotate></model-viewer>
   <button id="upload-button">Upload Image</button>
   <script src="script.js"></script>
 </body>
