@@ -6,10 +6,8 @@ document.getElementById('upload-button').addEventListener('click', () => {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
-      const textureURL = e.target.result;
-      const viewer = document.querySelector('model-viewer');
-      viewer.updateHotspot({ name: "logo" }); // Atualize para hotspots relevantes.
-      viewer.style.backgroundImage = `url(${textureURL})`;
+      const viewer = document.querySelector('#viewer');
+      viewer.setAttribute('material-texture', e.target.result); // Aplica a textura
     };
     reader.readAsDataURL(file);
   };
