@@ -11,7 +11,7 @@ scene.add(light);
 // Carregar o modelo GLTF
 const loader = new THREE.GLTFLoader();
 let model;
-loader.load('quadro2.glb', (gltf) => {
+loader.load('modelo.glb', (gltf) => {
   model = gltf.scene;
   scene.add(model);
   camera.position.z = 2;
@@ -36,7 +36,7 @@ document.getElementById('upload-button').addEventListener('click', () => {
       const texture = new THREE.TextureLoader().load(e.target.result);
       if (model) {
         model.traverse((node) => {
-          if (node.isMesh) {
+          if (node.isMesh && node.material.name === 'LogoMaterial') {
             node.material.map = texture;
             node.material.needsUpdate = true;
           }
