@@ -10,128 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- Estilos Globais (Tema Escuro) --- */
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            background-color: #000000; /* Fundo preto */
-            color: #ffffff; /* Texto branco como padrão */
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* --- Container Principal do Menu --- */
-        .menu-container {
-            width: 100%;
-            max-width: 480px; /* Largura máxima para celulares */
-            margin: 0 auto; /* Centraliza o container */
-            padding: 20px 15px;
-            box-sizing: border-box;
-        }
-
-        .main-title {
-            font-size: 36px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        /* --- Card do Prato --- */
-        .dish-card {
-            background-color: #1c1c1e; /* Cinza escuro para o card */
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 25px; /* Espaço entre os cards */
-            display: flex; /* Usamos flexbox para alinhar texto e modelo */
-            gap: 15px; /* Espaço entre a coluna de texto e a de modelo */
-            align-items: center; /* Centraliza verticalmente os itens */
-        }
-
-        /* --- Coluna de Detalhes (Texto) --- */
-        .details-column {
-            flex: 1.5; /* Faz a coluna de texto ocupar mais espaço */
-        }
-
-        .details-column h2 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .details-column .subtitle {
-            font-size: 14px;
-            font-weight: 500;
-            color: #25D366; /* Verde para o subtítulo */
-            margin: 2px 0 15px;
-        }
-
-        .details-column .description {
-            font-size: 13px;
-            color: #cccccc;
-            margin: 0 0 15px;
-        }
-        
-        .details-column .serving,
-        .details-column .price {
-            font-size: 14px;
-            color: #cccccc;
-            margin: 0 0 15px;
-        }
-
-        /* --- Coluna do Modelo 3D --- */
-        .model-column {
-            flex: 1; /* A coluna do modelo ocupa menos espaço */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- Estilo do Model Viewer --- */
-        model-viewer {
-            width: 150px;
-            height: 150px;
-            border-radius: 10px;
-            /* O slot do botão AR precisa ser posicionado */
-            position: relative; 
-        }
-
-        /* --- Botão de AR --- */
-        .ar-button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            background-color: #000000;
-            color: #25D366; /* Texto verde */
-            border: 1px solid #25D366; /* Borda verde */
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        .ar-button:hover {
-            background-color: #25D366;
-            color: #000000;
-        }
-
+        /* Estilos não foram alterados */
+        body { margin: 0; padding: 0; width: 100%; background-color: #000000; color: #ffffff; font-family: 'Poppins', sans-serif; }
+        .menu-container { width: 100%; max-width: 480px; margin: 0 auto; padding: 20px 15px; box-sizing: border-box; }
+        .main-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 30px; }
+        .dish-card { background-color: #1c1c1e; border-radius: 20px; padding: 20px; margin-bottom: 25px; display: flex; gap: 15px; align-items: center; }
+        .details-column { flex: 1.5; }
+        .details-column h2 { font-size: 18px; font-weight: 700; margin: 0; }
+        .details-column .subtitle { font-size: 14px; font-weight: 500; color: #25D366; margin: 2px 0 15px; }
+        .details-column .description { font-size: 13px; color: #cccccc; margin: 0 0 15px; }
+        .details-column .serving, .details-column .price { font-size: 14px; color: #cccccc; margin: 0 0 15px; }
+        .model-column { flex: 1; display: flex; align-items: center; justify-content: center; }
+        model-viewer { width: 150px; height: 150px; border-radius: 10px; position: relative; }
+        .ar-button { width: 100%; padding: 12px; margin-top: 10px; background-color: #000000; color: #25D366; border: 1px solid #25D366; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.3s, color 0.3s; }
+        .ar-button:hover { background-color: #25D366; color: #000000; }
     </style>
 </head>
 <body>
 
     <div class="menu-container">
-
         <h1 class="main-title">Cardápio</h1>
 
         <div class="dish-card">
             <div class="details-column">
                 <h2>COMBINADO CASAL</h2>
                 <p class="subtitle">São 25 peças</p>
-                <p class="description">
-                    Sushis Especiais: 5 jow couve crispy, 5 uramaki salmão, 5 jow ebi-tem, 5 hossomaki...
-                </p>
+                <p class="description">Sushis Especiais: 5 jow couve crispy, 5 uramaki salmão...</p>
                 <p class="serving">Serve 2 pessoas</p>
                 <p class="price">A partir de R$ 130,00</p>
                 <button class="ar-button" onclick="document.querySelector('#modelo1').activateAR()">Realidade Aumentada</button>
@@ -145,8 +49,8 @@
                     alt="Modelo 3D do Combinado Casal"
                     shadow-intensity="1"
                     environment-image="neutral"
-                    auto-rotate>
-                </model-viewer>
+                    auto-rotate
+                    scale="0.3 0.3 0.3"> </model-viewer>
             </div>
         </div>
 
@@ -154,12 +58,10 @@
             <div class="details-column">
                 <h2>COMBINADO FAMÍLIA</h2>
                 <p class="subtitle">São 50 peças</p>
-                <p class="description">
-                    Uma seleção completa para todos, com os melhores itens da casa para compartilhar.
-                </p>
+                <p class="description">Uma seleção completa para todos, com os melhores itens da casa.</p>
                 <p class="serving">Serve 4 pessoas</p>
                 <p class="price">A partir de R$ 240,00</p>
-                 <button class="ar-button" onclick="document.querySelector('#modelo2').activateAR()">Realidade Aumentada</button>
+                <button class="ar-button" onclick="document.querySelector('#modelo2').activateAR()">Realidade Aumentada</button>
             </div>
             <div class="model-column">
                 <model-viewer 
@@ -170,8 +72,8 @@
                     alt="Modelo 3D do Combinado Família"
                     shadow-intensity="1"
                     environment-image="neutral"
-                    auto-rotate>
-                </model-viewer>
+                    auto-rotate
+                    scale="0.3 0.3 0.3"> </model-viewer>
             </div>
         </div>
 
@@ -179,12 +81,10 @@
             <div class="details-column">
                 <h2>TEMAKI ESPECIAL</h2>
                 <p class="subtitle">1 unidade</p>
-                <p class="description">
-                    Salmão fresco, cream cheese e cebolinha, enrolado em alga crocante.
-                </p>
+                <p class="description">Salmão fresco, cream cheese e cebolinha, enrolado em alga crocante.</p>
                 <p class="serving">Serve 1 pessoa</p>
                 <p class="price">A partir de R$ 35,00</p>
-                 <button class="ar-button" onclick="document.querySelector('#modelo3').activateAR()">Realidade Aumentada</button>
+                <button class="ar-button" onclick="document.querySelector('#modelo3').activateAR()">Realidade Aumentada</button>
             </div>
             <div class="model-column">
                 <model-viewer 
@@ -195,11 +95,10 @@
                     alt="Modelo 3D do Temaki Especial"
                     shadow-intensity="1"
                     environment-image="neutral"
-                    auto-rotate>
-                </model-viewer>
+                    auto-rotate
+                    scale="0.3 0.3 0.3"> </model-viewer>
             </div>
         </div>
-
     </div>
 
 </body>
