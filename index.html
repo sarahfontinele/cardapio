@@ -7,145 +7,114 @@
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- Estilos Globais --- */
-        body, html {
+        /* --- Estilos Globais (Tema Escuro) --- */
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
-            background-color: #f0f0f0; /* Um fundo suave para a página */
-            font-family: 'Poppins', sans-serif; /* Fonte aplicada a todo o corpo */
+            background-color: #000000; /* Fundo preto */
+            color: #ffffff; /* Texto branco como padrão */
+            font-family: 'Poppins', sans-serif;
         }
 
         /* --- Container Principal do Menu --- */
         .menu-container {
             width: 100%;
-            max-width: 480px; /* Largura máxima para simular um celular */
-            margin: 20px auto; /* Centraliza o container na página */
-            padding: 10px;
-            box-sizing: border-box; /* Garante que padding não afete a largura total */
+            max-width: 480px; /* Largura máxima para celulares */
+            margin: 0 auto; /* Centraliza o container */
+            padding: 20px 15px;
+            box-sizing: border-box;
         }
 
-        /* --- Card Principal do Prato --- */
-        .product-card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Garante que o model-viewer não "vaze" do card */
-            margin-bottom: 25px;
-        }
-
-        /* --- Visualizador 3D --- */
-        model-viewer {
-            width: 100%;
-            height: 300px; /* Altura fixa para o modelo 3D */
-            display: block;
-            background-color: #e8e8e8; /* Fundo para a área do modelo */
-        }
-
-        /* --- Detalhes do Prato --- */
-        .details-container {
-            padding: 20px;
+        .main-title {
+            font-size: 36px;
+            font-weight: 700;
             text-align: center;
+            margin-bottom: 30px;
         }
 
-        .details-container h2 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #666;
+        /* --- Card do Prato --- */
+        .dish-card {
+            background-color: #1c1c1e; /* Cinza escuro para o card */
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px; /* Espaço entre os cards */
+            display: flex; /* Usamos flexbox para alinhar texto e modelo */
+            gap: 15px; /* Espaço entre a coluna de texto e a de modelo */
+            align-items: center; /* Centraliza verticalmente os itens */
+        }
+
+        /* --- Coluna de Detalhes (Texto) --- */
+        .details-column {
+            flex: 1.5; /* Faz a coluna de texto ocupar mais espaço */
+        }
+
+        .details-column h2 {
+            font-size: 18px;
+            font-weight: 700;
             margin: 0;
-            text-transform: uppercase;
         }
 
-        .details-container h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #111;
-            margin: 5px 0 10px;
+        .details-column .subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: #25D366; /* Verde para o subtítulo */
+            margin: 2px 0 15px;
         }
 
-        .details-container .description {
-            font-size: 16px;
-            color: #444;
-            margin: 0 0 20px;
+        .details-column .description {
+            font-size: 13px;
+            color: #cccccc;
+            margin: 0 0 15px;
+        }
+        
+        .details-column .serving,
+        .details-column .price {
+            font-size: 14px;
+            color: #cccccc;
+            margin: 0 0 15px;
         }
 
-        .details-container .price {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000;
-            display: block;
-            margin-bottom: 20px;
+        /* --- Coluna do Modelo 3D --- */
+        .model-column {
+            flex: 1; /* A coluna do modelo ocupa menos espaço */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Estilo do Model Viewer --- */
+        model-viewer {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            /* O slot do botão AR precisa ser posicionado */
+            position: relative; 
         }
 
         /* --- Botão de AR --- */
-        #ar-button {
-            display: inline-block;
-            width: 90%;
-            padding: 15px;
-            background-color: #000000;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        #ar-button:hover {
-            background-color: #333;
-            transform: scale(1.02);
-        }
-
-        /* --- Seção de Outros Pratos --- */
-        .other-dishes h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-left: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .other-dishes-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Duas colunas */
-            gap: 15px; /* Espaçamento entre os cards */
-        }
-
-        .small-card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .small-card img {
+        .ar-button {
             width: 100%;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            background-color: #eee;
+            padding: 12px;
+            margin-top: 10px;
+            background-color: #000000;
+            color: #25D366; /* Texto verde */
+            border: 1px solid #25D366; /* Borda verde */
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, color 0.3s;
         }
         
-        .small-card .name {
-            font-weight: 600;
-            font-size: 15px;
-            color: #222;
-        }
-
-        .small-card .price {
-            font-size: 14px;
-            color: #555;
-            margin-top: 5px;
+        .ar-button:hover {
+            background-color: #25D366;
+            color: #000000;
         }
 
     </style>
@@ -154,57 +123,80 @@
 
     <div class="menu-container">
 
-        <div class="product-card">
-            <model-viewer 
-                src="quadro.glb" 
-                ar 
-                camera-controls 
-                touch-action="pan-y" 
-                alt="Modelo 3D de um prato"
-                shadow-intensity="1"
-                environment-image="neutral"
-                auto-rotate
-                interaction-prompt="auto">
-            </model-viewer>
+        <h1 class="main-title">Cardápio</h1>
 
-            <div class="details-container">
-                <h2>PRATO PRINCIPAL</h2>
-                <h1>Nome do Prato</h1>
+        <div class="dish-card">
+            <div class="details-column">
+                <h2>COMBINADO CASAL</h2>
+                <p class="subtitle">São 25 peças</p>
                 <p class="description">
-                    Uma breve e deliciosa descrição do prato, com seus principais ingredientes e modo de preparo.
+                    Sushis Especiais: 5 jow couve crispy, 5 uramaki salmão, 5 jow ebi-tem, 5 hossomaki...
                 </p>
-                <span class="price">R$ 59,90</span>
-
-                <button id="ar-button">Veja no mundo real</button>
+                <p class="serving">Serve 2 pessoas</p>
+                <p class="price">A partir de R$ 130,00</p>
+                <button class="ar-button" onclick="document.querySelector('#modelo1').activateAR()">Realidade Aumentada</button>
+            </div>
+            <div class="model-column">
+                <model-viewer 
+                    id="modelo1"
+                    src="quadro.glb" 
+                    ar
+                    touch-action="pan-y"
+                    alt="Modelo 3D do Combinado Casal"
+                    shadow-intensity="1"
+                    environment-image="neutral"
+                    auto-rotate>
+                </model-viewer>
             </div>
         </div>
 
-        <div class="other-dishes">
-            <h3>Outros Pratos</h3>
-            <div class="other-dishes-grid">
-                
-                <div class="small-card">
-                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
-                    <span class="name">Sobremesa Especial</span>
-                    <span class="price">R$ 24,90</span>
-                </div>
+        <div class="dish-card">
+            <div class="details-column">
+                <h2>COMBINADO FAMÍLIA</h2>
+                <p class="subtitle">São 50 peças</p>
+                <p class="description">
+                    Uma seleção completa para todos, com os melhores itens da casa para compartilhar.
+                </p>
+                <p class="serving">Serve 4 pessoas</p>
+                <p class="price">A partir de R$ 240,00</p>
+                 <button class="ar-button" onclick="document.querySelector('#modelo2').activateAR()">Realidade Aumentada</button>
+            </div>
+            <div class="model-column">
+                <model-viewer 
+                    id="modelo2"
+                    src="modelo2.glb" 
+                    ar
+                    touch-action="pan-y"
+                    alt="Modelo 3D do Combinado Família"
+                    shadow-intensity="1"
+                    environment-image="neutral"
+                    auto-rotate>
+                </model-viewer>
+            </div>
+        </div>
 
-                <div class="small-card">
-                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
-                    <span class="name">Entrada da Casa</span>
-                    <span class="price">R$ 19,90</span>
-                </div>
-                 <div class="small-card">
-                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
-                    <span class="name">Bebida Refrescante</span>
-                    <span class="price">R$ 9,90</span>
-                </div>
-                 <div class="small-card">
-                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
-                    <span class="name">Prato Vegano</span>
-                    <span class="price">R$ 49,90</span>
-                </div>
-
+        <div class="dish-card">
+            <div class="details-column">
+                <h2>TEMAKI ESPECIAL</h2>
+                <p class="subtitle">1 unidade</p>
+                <p class="description">
+                    Salmão fresco, cream cheese e cebolinha, enrolado em alga crocante.
+                </p>
+                <p class="serving">Serve 1 pessoa</p>
+                <p class="price">A partir de R$ 35,00</p>
+                 <button class="ar-button" onclick="document.querySelector('#modelo3').activateAR()">Realidade Aumentada</button>
+            </div>
+            <div class="model-column">
+                <model-viewer 
+                    id="modelo3"
+                    src="modelo3.glb" 
+                    ar
+                    touch-action="pan-y"
+                    alt="Modelo 3D do Temaki Especial"
+                    shadow-intensity="1"
+                    environment-image="neutral"
+                    auto-rotate>
+                </model-viewer>
             </div>
         </div>
 
