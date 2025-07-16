@@ -13,7 +13,15 @@
         /* Estilos Globais */
         body { margin: 0; padding: 0; width: 100%; background-color: #000000; color: #ffffff; font-family: 'Poppins', sans-serif; }
         .menu-container { width: 100%; max-width: 480px; margin: 0 auto; padding: 20px 15px; box-sizing: border-box; }
-        .main-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 30px; }
+        
+        .main-title { 
+            font-size: 36px; 
+            font-weight: 700; 
+            text-align: center; 
+            margin-bottom: 30px; 
+            color: red; /* TESTE: Para confirmar que o CSS novo foi carregado */
+        }
+
         .dish-card { background-color: #1c1c1e; border-radius: 20px; padding: 20px; margin-bottom: 25px; display: flex; gap: 15px; align-items: center; }
         .details-column { flex: 1.5; }
         .details-column h2 { font-size: 18px; font-weight: 700; margin: 0; }
@@ -25,7 +33,7 @@
         .ar-button { width: 100%; padding: 12px; margin-top: 10px; background-color: #000000; color: #25D366; border: 1px solid #25D366; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.3s, color 0.3s; }
         .ar-button:hover { background-color: #25D366; color: #000000; }
         
-        /* --- NOVO --- Esconde o botão de AR padrão do model-viewer */
+        /* Regra para esconder o botão de AR padrão do model-viewer */
         model-viewer::part(ar-button) {
             display: none;
         }
@@ -36,73 +44,34 @@
 
     <div class="menu-container">
         <h1 class="main-title">Cardápio</h1>
-
+        
         <div class="dish-card">
             <div class="details-column">
-                <h2>COMBINADO CASAL</h2>
-                <p class="subtitle">São 25 peças</p>
-                <p class="description">Sushis Especiais: 5 jow couve crispy, 5 uramaki salmão...</p>
-                <p class="serving">Serve 2 pessoas</p>
-                <p class="price">A partir de R$ 130,00</p>
+                <h2>COMBINADO CASAL</h2><p class="subtitle">São 25 peças</p><p class="description">Sushis Especiais: 5 jow couve crispy, 5 uramaki salmão...</p><p class="serving">Serve 2 pessoas</p><p class="price">A partir de R$ 130,00</p>
                 <button class="ar-button" onclick="document.querySelector('#modelo1').activateAR()">Realidade Aumentada</button>
             </div>
             <div class="model-column">
-                <model-viewer 
-                    id="modelo1"
-                    src="quadro.glb" 
-                    ar
-                    touch-action="pan-y"
-                    alt="Modelo 3D do Combinado Casal"
-                    shadow-intensity="1"
-                    environment-image="neutral"
-                    auto-rotate
-                    scale="0.1 0.1 0.1"> </model-viewer>
+                <model-viewer id="modelo1" src="quadro.glb" ar touch-action="pan-y" alt="Modelo 3D do Combinado Casal" shadow-intensity="1" environment-image="neutral" auto-rotate scale="0.1 0.1 0.1"></model-viewer>
             </div>
         </div>
 
         <div class="dish-card">
             <div class="details-column">
-                <h2>COMBINADO FAMÍLIA</h2>
-                <p class="subtitle">São 50 peças</p>
-                <p class="description">Uma seleção completa para todos, com os melhores itens da casa.</p>
-                <p class="serving">Serve 4 pessoas</p>
-                <p class="price">A partir de R$ 240,00</p>
+                <h2>COMBINADO FAMÍLIA</h2><p class="subtitle">São 50 peças</p><p class="description">Uma seleção completa para todos, com os melhores itens da casa.</p><p class="serving">Serve 4 pessoas</p><p class="price">A partir de R$ 240,00</p>
                 <button class="ar-button" onclick="document.querySelector('#modelo2').activateAR()">Realidade Aumentada</button>
             </div>
             <div class="model-column">
-                <model-viewer 
-                    id="modelo2"
-                    src="modelo2.glb" 
-                    ar
-                    touch-action="pan-y"
-                    alt="Modelo 3D do Combinado Família"
-                    shadow-intensity="1"
-                    environment-image="neutral"
-                    auto-rotate
-                    scale="0.1 0.1 0.1"> </model-viewer>
+                <model-viewer id="modelo2" src="modelo2.glb" ar touch-action="pan-y" alt="Modelo 3D do Combinado Família" shadow-intensity="1" environment-image="neutral" auto-rotate scale="0.1 0.1 0.1" exposure="0.7" tone-mapping="aces"></model-viewer>
             </div>
         </div>
 
         <div class="dish-card">
             <div class="details-column">
-                <h2>TEMAKI ESPECIAL</h2>
-                <p class="subtitle">1 unidade</p>
-                <p class="description">Salmão fresco, cream cheese e cebolinha, enrolado em alga crocante.</p>
-                <p class="serving">Serve 1 pessoa</p>
-                <p class="price">A partir de R$ 35,00</p>
+                <h2>TEMAKI ESPECIAL</h2><p class="subtitle">1 unidade</p><p class="description">Salmão fresco, cream cheese e cebolinha, enrolado em alga crocante.</p><p class="serving">Serve 1 pessoa</p><p class="price">A partir de R$ 35,00</p>
                 <button class="ar-button" onclick="document.querySelector('#modelo3').activateAR()">Realidade Aumentada</button>
             </div>
             <div class="model-column">
-                <model-viewer 
-                    id="modelo3"
-                    src="modelo3.glb" 
-                    ar
-                    touch-action="pan-y"
-                    alt="Modelo 3D do Temaki Especial"
-                    shadow-intensity="1"
-                    environment-image="neutral"
-                    auto-rotate
-                    scale="0.1 0.1 0.1"> </model-viewer>
+                <model-viewer id="modelo3" src="modelo3.glb" ar touch-action="pan-y" alt="Modelo 3D do Temaki Especial" shadow-intensity="1" environment-image="neutral" auto-rotate scale="0.1 0.1 0.1"></model-viewer>
             </div>
         </div>
     </div>
