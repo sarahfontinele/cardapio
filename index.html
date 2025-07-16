@@ -1,76 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo 3D com AR Ajustado</title>
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-  <style>
-    /* Estilos básicos */
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden; /* Remove qualquer rolagem */
-      background: none; /* Sem fundo */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Virtual 3D</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    model-viewer {
-      width: 100vw; /* Largura total */
-      height: 100vh; /* Altura total */
-      display: block;
-      background: none;
-      border: none;
-    }
+    <style>
+        /* --- Estilos Globais --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #f0f0f0; /* Um fundo suave para a página */
+            font-family: 'Poppins', sans-serif; /* Fonte aplicada a todo o corpo */
+        }
 
-    /* Botão de AR */
-    #ar-button {
-      position: absolute;
-      bottom: 10px; /* Ajustado para ficar mais baixo */
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px 20px;
-      background-color: #92FF25; /* Cor de fundo alterada */
-      color: black; /* Texto em preto */
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
-    }
+        /* --- Container Principal do Menu --- */
+        .menu-container {
+            width: 100%;
+            max-width: 480px; /* Largura máxima para simular um celular */
+            margin: 20px auto; /* Centraliza o container na página */
+            padding: 10px;
+            box-sizing: border-box; /* Garante que padding não afete a largura total */
+        }
 
-    #ar-button:hover {
-      background-color: #75CC1E; /* Tom mais escuro no hover */
-    }
+        /* --- Card Principal do Prato --- */
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Garante que o model-viewer não "vaze" do card */
+            margin-bottom: 25px;
+        }
 
-    /* Ícone de interação (mão) */
-    model-viewer[interaction-prompt="auto"]::part(interaction-prompt) {
-      width: 75px; /* Ícone maior */
-      height: 75px;
-      animation-delay: 0.5s; /* Aparece mais rápido */
-    }
-  </style>
+        /* --- Visualizador 3D --- */
+        model-viewer {
+            width: 100%;
+            height: 300px; /* Altura fixa para o modelo 3D */
+            display: block;
+            background-color: #e8e8e8; /* Fundo para a área do modelo */
+        }
+
+        /* --- Detalhes do Prato --- */
+        .details-container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .details-container h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .details-container h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111;
+            margin: 5px 0 10px;
+        }
+
+        .details-container .description {
+            font-size: 16px;
+            color: #444;
+            margin: 0 0 20px;
+        }
+
+        .details-container .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* --- Botão de AR --- */
+        #ar-button {
+            display: inline-block;
+            width: 90%;
+            padding: 15px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #ar-button:hover {
+            background-color: #333;
+            transform: scale(1.02);
+        }
+
+        /* --- Seção de Outros Pratos --- */
+        .other-dishes h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-left: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .other-dishes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas */
+            gap: 15px; /* Espaçamento entre os cards */
+        }
+
+        .small-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .small-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #eee;
+        }
+        
+        .small-card .name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #222;
+        }
+
+        .small-card .price {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+    </style>
 </head>
 <body>
-  <model-viewer 
-    src="quadro.glb" 
-    ar 
-    camera-controls 
-    touch-action="pan-y" 
-    alt="Modelo 3D Ajustado"
-    shadow-intensity="0.4"
-    shadow-softness="0.35"
-    tone-mapping="aces"
-    environment-image="https://modelviewer.dev/shared-assets/environments/moon_1k.hdr"
-    auto-rotate 
-    auto-rotate-speed="1" 
-    interaction-prompt="auto"
-    interaction-prompt-threshold="500"
-    scale="0.4 0.4 0.4"> <!-- Reduzido para 40% do tamanho original -->
-    
-    <!-- Botão de AR -->
-    <button id="ar-button" slot="ar-button">Veja no mundo real</button>
-  </model-viewer>
+
+    <div class="menu-container">
+
+        <div class="product-card">
+            <model-viewer 
+                src="quadro.glb" 
+                ar 
+                camera-controls 
+                touch-action="pan-y" 
+                alt="Modelo 3D de um prato"
+                shadow-intensity="1"
+                environment-image="neutral"
+                auto-rotate
+                interaction-prompt="auto">
+            </model-viewer>
+
+            <div class="details-container">
+                <h2>PRATO PRINCIPAL</h2>
+                <h1>Nome do Prato</h1>
+                <p class="description">
+                    Uma breve e deliciosa descrição do prato, com seus principais ingredientes e modo de preparo.
+                </p>
+                <span class="price">R$ 59,90</span>
+
+                <button id="ar-button">Veja no mundo real</button>
+            </div>
+        </div>
+
+        <div class="other-dishes">
+            <h3>Outros Pratos</h3>
+            <div class="other-dishes-grid">
+                
+                <div class="small-card">
+                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
+                    <span class="name">Sobremesa Especial</span>
+                    <span class="price">R$ 24,90</span>
+                </div>
+
+                <div class="small-card">
+                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
+                    <span class="name">Entrada da Casa</span>
+                    <span class="price">R$ 19,90</span>
+                </div>
+                 <div class="small-card">
+                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
+                    <span class="name">Bebida Refrescante</span>
+                    <span class="price">R$ 9,90</span>
+                </div>
+                 <div class="small-card">
+                    <img src="https://via.placeholder.com/150" alt="Imagem de outro prato">
+                    <span class="name">Prato Vegano</span>
+                    <span class="price">R$ 49,90</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
