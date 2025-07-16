@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Estilos não foram alterados */
+        /* Estilos Globais */
         body { margin: 0; padding: 0; width: 100%; background-color: #000000; color: #ffffff; font-family: 'Poppins', sans-serif; }
         .menu-container { width: 100%; max-width: 480px; margin: 0 auto; padding: 20px 15px; box-sizing: border-box; }
         .main-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 30px; }
@@ -24,6 +24,12 @@
         model-viewer { width: 150px; height: 150px; border-radius: 10px; position: relative; }
         .ar-button { width: 100%; padding: 12px; margin-top: 10px; background-color: #000000; color: #25D366; border: 1px solid #25D366; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.3s, color 0.3s; }
         .ar-button:hover { background-color: #25D366; color: #000000; }
+        
+        /* --- NOVO --- Esconde o botão de AR padrão do model-viewer */
+        model-viewer::part(ar-button) {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -50,7 +56,7 @@
                     shadow-intensity="1"
                     environment-image="neutral"
                     auto-rotate
-                    scale="0.3 0.3 0.3"> </model-viewer>
+                    scale="0.1 0.1 0.1"> </model-viewer>
             </div>
         </div>
 
@@ -73,7 +79,7 @@
                     shadow-intensity="1"
                     environment-image="neutral"
                     auto-rotate
-                    scale="0.3 0.3 0.3"> </model-viewer>
+                    scale="0.1 0.1 0.1"> </model-viewer>
             </div>
         </div>
 
@@ -96,7 +102,7 @@
                     shadow-intensity="1"
                     environment-image="neutral"
                     auto-rotate
-                    scale="0.3 0.3 0.3"> </model-viewer>
+                    scale="0.1 0.1 0.1"> </model-viewer>
             </div>
         </div>
     </div>
